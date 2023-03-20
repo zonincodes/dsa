@@ -24,10 +24,11 @@ int main()
 {
     //  execute the declaration and assignment
 
-    IntSLLNode *p = new IntSLLNode(10);
+    IntSLLNode *p = new IntSLLNode(10); // a new node is creadted
 
-    cout << p ->info <<endl;
-    p -> next = new IntSLLNode(8);
+    cout << p ->info <<endl; // print the node infoe
+    p -> next = new IntSLLNode(8); // constructor assigns number 8 to the info member of this node
+    // the new node is inluded in the list by making the next of the first node a pointer to the new node
     cout << p-> next -> info << endl;
 
     return 0;
