@@ -5,14 +5,17 @@ using namespace std;
 
 class IntSLLNode {
     public:
-        IntSLLNode(){
+        IntSLLNode(){ // initializes the bext pointer to null 
             next = 0;
         }
 
-        IntSLLNode(int i, IntSLLNode *in = 0){
+        IntSLLNode(int i, IntSLLNode *in = 0){ // covers when a only one numeriacal argument is supplied by the user
             info = i; next = in;
         }
 
-    int info;
-    IntSLLNode * next;
+    int info; // used to store information, and this member is important to the user
+    IntSLLNode * next; // used to link nodes to form a linked list
+    // Note that IntSLLNode is defined
+    // in terms of itself because one data member, next, is a pointer to a node of the same type that is
+    //  just being defined.Objects that include such a data member are called self - referential objects.
 };
