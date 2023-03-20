@@ -19,3 +19,16 @@ class IntSLLNode {
     // in terms of itself because one data member, next, is a pointer to a node of the same type that is
     //  just being defined.Objects that include such a data member are called self - referential objects.
 };
+
+int main()
+{
+    //  execute the declaration and assignment
+
+    IntSLLNode *p = new IntSLLNode(10);
+
+    cout << p ->info <<endl;
+    p -> next = new IntSLLNode(8);
+    cout << p-> next -> info << endl;
+
+    return 0;
+}
