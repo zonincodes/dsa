@@ -2,13 +2,14 @@
 #define DEMO_H
 
 #include <iostream>
-
+#include <string>
+using namespace std;
 class Jupiter{
     public:
         Jupiter();
         Jupiter(char *x);
 
-        char getName();
+        string getName();
     private:
         char *name;
     
