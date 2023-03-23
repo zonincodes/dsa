@@ -28,6 +28,14 @@ class DoublyLinkedList {
         void addToDLLTail(const T&);
         T deleteFromDLLTail();
         void addToHead(const T&);
+        DLLNode<T> getHead(){
+            return *head;
+        }
+
+        DLLNode<T> getTail(){
+            return *tail;
+        }
+
 
     
     protected:
@@ -38,7 +46,7 @@ template <class T>
 void DoublyLinkedList<T>::addToDLLTail(const T &el){
     if(tail != 0){
         tail = new DLLNode<T>(el, 0, tail);
-        taile -> prev-> next = tail;
+        tail -> prev-> next = tail;
     } else {
         head = tail = new DLLNode<T>(el);
     }
@@ -63,7 +71,7 @@ T DoublyLinkedList<T>::deleteFromDLLTail(){
 
 template <class T>
 void DoublyLinkedList<T>::addToHead(const T &el){
-    head = new DLLNode(el, head)
+    head = new DLLNode(el, head);
     if(tail == 0){
         tail == head;
     }
