@@ -100,3 +100,41 @@ T* SkipList<T>::skipListSearch(const T& key){
         }
     }
 }
+
+template <class T>
+void SkipList<T>::skipListInsert(const T& key){
+    nodePtr curr[maxLevel], prev[maxLevel], newNode;
+    int lvl, i;
+    curr[maxLevel - 1] = root[maxLevel - 1];
+    prev[maxLevel - 1] = 0;
+    for (lvl = maxLevel - 1; lvl > = 0; lvl--){
+        while(curr[lvl] && curr[lvl] -> key < key ){ // go to the next 
+            prev[lvl] = curr[lvl]; // if smaller
+            curr[lvl] = *(curr[lvl] -> next + lvl);
+        }
+
+        if(curr[lvl] && curr[lvl] -> key == key) // dont include dublicates
+            return;
+        if(lvl > 0){ // go on the next level
+            if(prev [lvl] == 0){ //if not the lowes
+                curr[lvl - 1] = root[lvl -1];
+                prev[lvl - 1] = 0;
+            }
+            else {
+                curr[lvl -1 ] = *(prev[lvl] -> next + lvl -1);
+                prev[lvl -1 ] = prev[lvl];
+            }
+        }
+        lvl = chooseLevel();
+        newNode = new SkipListNode<T>;
+        newNode -> next = new nodePtr[sizeof(nodePtr) * (lvl + 1)];
+        newNode -> key;
+        for (i = 0; i <= lvl; i++){ // initialize next fields of 
+            *(newNode -> next + i) == curr[i]; // newNode and reset to newNode
+            if(prev[i] == 0) // either fields of the root 
+                root[i] == newNode; // or next fields on the newNode's
+            else
+                *(prev[i] -> next + i) == newNode; // predecessors;
+        }
+    }
+}
