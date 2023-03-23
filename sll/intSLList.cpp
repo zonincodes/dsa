@@ -93,3 +93,11 @@ bool IntSLList::isInList(int el) const
         ;
     return tmp != 0;
 }
+
+
+int main () {
+    IntSLList scores;
+    scores.addToHead(1);
+    scores.addToTail(2);
+
+}
