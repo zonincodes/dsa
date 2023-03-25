@@ -163,3 +163,17 @@ char *getString(char *msg){
     for(i = 0; destin[i] == toupper(s[i]); i++);
     return destin;
 }
+
+void includeBook() {
+    Author newAuthor;
+    Book newBook;
+    newAuthor.name = getString("Enter author's name: ");
+    newBook.title = getString("Enter the title of the book: ");
+    list<Author>::iterator oldAuthor = find(catalog[newAuthor.name[0]].begin(),
+        catalog[newAuthor.name[0]].end(), newAuthor);
+    if(oldAuthor == catalog[newAuthor.name[0]].end()){
+        newAuthor.books.push_front(newBook);
+        catalog[newAuthor.name[0]].push_front(newAuthor);
+    }
+    else (*oldAuthor).books.push_front(newBook);
+}
