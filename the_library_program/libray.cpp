@@ -118,7 +118,7 @@ private:
 }; // end of patron class
 
 list<Author> catalog['Z' + 1];
-list<Patron> peaople['Z' + 1];
+list<Patron> people['Z' + 1];
 
 ostream &Author::printAuthor(ostream &out) const
 {
@@ -164,6 +164,19 @@ char *getString(char *msg){
     return destin;
 }
 
+void status()
+{
+    register int i;
+    cout << "Library has the following books:\n\n";
+    for (i = 'A'; i <= 'Z'; i++)
+        if (!catalog[i].empty())
+            cout << catalog[i];
+    cout << "\nThe following people are using the library:\n\n";
+    for (i = 'A'; i <= 'Z'; i++)
+        if (!people[i].empty())
+            cout << people[i];
+}
+
 void includeBook() {
     Author newAuthor;
     Book newBook;
@@ -176,4 +189,47 @@ void includeBook() {
         catalog[newAuthor.name[0]].push_front(newAuthor);
     }
     else (*oldAuthor).books.push_front(newBook);
+}
+
+void checkOutBook() {
+    Patron patron;
+    Author author;
+    Book book;
+
+    list<Author>::iterator authorRef;
+    list<Book>::iterator bookRef;
+    patron.name = getString("Enter patron's name: ");
+
+    while(true){
+        author.name = getString("Enter author's name: ");
+        authorRef = find(catalog[author.name[0]].begin(), 
+            catalog[author.name[0]].end(), author);
+        if(authorRef == catalog[author.name[0]].end())
+            cout << "Misspelled author's name\n";
+        else break;
+    }
+
+    while (true) {
+        book.title = getString("Enter the title of the book: ");
+        bookRef = find((*authorRef).books.begin(), (*authorRef).books.end(), book);
+
+        if(bookRef == ((*authorRef).books.end()))
+            cout << "Misspelled the title \n";
+        else break;
+
+    }
+
+    list<Patron>::iterator patronRef;
+    patronRef = find(people[patron.name[0]].begin(), people[patron.name[0]].end(), patron);
+
+    CheckedOutBook checkedOutBook(authorRef, bookRef);
+    if(patronRef == people[patron.name[0]].end()){ // a new patron
+        patron.books.push_front(checkedOutBook); // in the library
+        people[patron.name[0]].push_front(patron);
+        (*bookRef).patron= &*people[patron.name[0]].begin();
+    } 
+    else {
+        (*patronRef).books.push_front(checkedOutBook);
+        (*bookRef).patron = &*patronRef;
+    }
 }
