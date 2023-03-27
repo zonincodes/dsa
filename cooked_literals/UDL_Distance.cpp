@@ -33,3 +33,10 @@ Distance operator"" _mi(long double val)
 {
     return Distance(val * Distance::km_per_mile);
 }
+
+int main(){
+    //  Must have a decimal point to bind to the operator we defined!
+    Distance d{ 402.0_km}; // construct using kilometers
+    std::cout << "Kilometers in d: " << d.get_kilometers() << std::endl;
+    return 0;
+}
