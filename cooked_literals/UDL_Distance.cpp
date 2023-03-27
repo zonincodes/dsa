@@ -42,5 +42,9 @@ int main(){
     Distance d2{ 402.0_mi}; //construct using miles
 
     std::cout << "Kilometers in d2: " << d2.get_kilometers() << std::endl;
+
+    //  add distances with difents units
+    Distance d3 = 36.0_mi + 42.0_km;
+    std::cout << "d3 value = " << d3.get_kilometers() << std::endl;
     return 0;
 }
