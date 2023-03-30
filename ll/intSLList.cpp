@@ -56,3 +56,35 @@ int IntSingleLinkedList::deleteFromTail(){
     return el;
 }
 
+void IntSingleLinkedList::deleteNode(int el){
+    // if none empty list
+    if(head!=0)
+    {
+        // if only one node in the list;
+        if(head==tail && head -> info == el)
+        {
+            delete head;
+            head = tail = 0;
+        }
+        else if (el == head -> info){
+            IntSingleLinkedListNode *tmp = head;
+            head = head->next;
+            delete tmp;
+        }
+
+        else {
+            IntSingleLinkedListNode *pred, *tmp;
+
+            for (pred = head, tmp = head -> next;
+                tmp != 0 && !(tmp -> info == el); tmp = tmp -> next);
+            
+            if(tmp != 0)
+            {
+                pred -> next = tmp ->next;
+                if(tmp == tail)
+                    tail = pred;
+                delete tmp;
+            }
+        }
+    }
+}
