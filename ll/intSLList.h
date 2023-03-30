@@ -19,6 +19,29 @@ class IntSingleLinkedListNode{
 
 class IntSingleLinkedList{
 
+    public:
+        IntSingleLinkedList(){
+            head = tail = 0;
+        }
+
+        ~IntSingleLinkedList();
+
+        bool isEmpty(){
+            return head == 0;
+        } 
+
+        void addToHead(int);
+        void addToTail(int);
+
+        int deleteFromHead();
+        int deleteFromTail();
+        void deleteNode(int);
+
+        bool isInList(int) const;
+
+
+    private:
+        IntSingleLinkedListNode *head, *tail;
 };
 
 #endif
