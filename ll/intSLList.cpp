@@ -35,3 +35,24 @@ int IntSingleLinkedList::deleteFromHead(){
     delete temp;
     return el;
 }
+
+int IntSingleLinkedList::deleteFromTail(){
+    int el = tail ->info;
+
+    if(head==tail){
+        delete head;
+        head = tail = 0;
+
+    } 
+    else
+    {
+        IntSingleLinkedListNode * tmp;
+        for(tmp = head; tmp -> next != tail; tmp = tmp->next)
+        delete tail;
+        tail = tmp;
+        tail -> next = 0;
+    }
+
+    return el;
+}
+
